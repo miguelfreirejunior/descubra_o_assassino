@@ -1,4 +1,8 @@
-<button *ngIf="!game" (click)="start()">Iniciar Jogo</button>
+<div *ngIf="!game">
+    <img  style="text-align:center" width="300" alt="Angular Logo" src="assets/images/forest-detective-1391657-640x480.jpg">
+</div>
+<button *ngIf="!game" style="text-align:center" (click)="start()">Iniciar Jogo</button>
+
 <div *ngIf="game">
-    Teste
+    <p>{{texto}}</p>
 </div>

@@ -1,0 +1,11 @@
+D:\Backup\Development\descubra_o_assassino\api\bin\Debug\netcoreapp2.0\api.deps.json
+D:\Backup\Development\descubra_o_assassino\api\bin\Debug\netcoreapp2.0\api.runtimeconfig.json
+D:\Backup\Development\descubra_o_assassino\api\bin\Debug\netcoreapp2.0\api.runtimeconfig.dev.json
+D:\Backup\Development\descubra_o_assassino\api\bin\Debug\netcoreapp2.0\api.dll
+D:\Backup\Development\descubra_o_assassino\api\bin\Debug\netcoreapp2.0\api.pdb
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.csprojAssemblyReference.cache
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.csproj.CoreCompileInputs.cache
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.AssemblyInfoInputs.cache
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.AssemblyInfo.cs
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.dll
+D:\Backup\Development\descubra_o_assassino\api\obj\Debug\netcoreapp2.0\api.pdb
