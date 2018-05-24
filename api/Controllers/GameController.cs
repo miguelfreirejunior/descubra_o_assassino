@@ -8,6 +8,9 @@ using api.Services;
 
 namespace api.Controllers
 {
+    /// <summary>
+    /// Controlador do fluxo do jogo
+    /// </summary>
     [Route("api/[controller]")]
     public class GameController : Controller
     {
@@ -18,39 +21,32 @@ namespace api.Controllers
             this._gameService = gameService;
         }
 
-        public async Task<ClientGame> create(){
-            return await this._gameService.create();
+
+        /// <summary>
+        /// Inicia um novo jogo
+        /// </summary>
+        /// <returns>Identificador do jogo iniciado</returns>
+        [HttpPost]
+        [Route("create")]
+        public async Task<string> Create(){
+            return await this._gameService.Create();
         }
-        // // GET api/values
-        // [HttpGet]
-        // public IEnumerable<string> Get()
-        // {
-        //     return new string[] { "value1", "value2" };
-        // }
 
-        // // GET api/values/5
-        // [HttpGet("{id}")]
-        // public string Get(int id)
-        // {
-        //     return "value";
-        // }
 
-        // // POST api/values
-        // [HttpPost]
-        // public void Post([FromBody]string value)
-        // {
-        // }
-
-        // // PUT api/values/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // // DELETE api/values/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
+        /// <summary>
+        /// Confronta a testemunha com uma possível solução
+        /// </summary>
+        /// <param name="guess">Palpite informado</param>
+        /// <returns>
+        ///     0 - indica palpite certeiro
+        ///     1 - indica que o assassino está incorreto
+        ///     2 - indica que o local está incorreto
+        ///     3 - indica que a arma está incorreta 
+        /// </returns>
+        [HttpPost]
+        [Route("guess")]
+        public async Task<short> Guess([FromBody] Guess guess){
+            return await this._gameService.Guess(guess);
+        }
     }
 }

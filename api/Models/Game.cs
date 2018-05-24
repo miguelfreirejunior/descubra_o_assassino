@@ -1,6 +1,8 @@
+using System;
+
 namespace api.Models
 {
-    public class Game : ClientGame
+    public class Game
     {
         public int Suspeito { get; set; }
 

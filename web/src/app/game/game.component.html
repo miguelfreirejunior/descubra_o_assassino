@@ -1,8 +1,48 @@
 <div *ngIf="!game">
-    <img  style="text-align:center" width="300" alt="Angular Logo" src="assets/images/forest-detective-1391657-640x480.jpg">
+    <img style="text-align:center" width="300" alt="Angular Logo" src="assets/images/forest-detective-1391657-640x480.jpg">
 </div>
 <button *ngIf="!game" style="text-align:center" (click)="start()">Iniciar Jogo</button>
 
-<div *ngIf="game">
+<div *ngIf="game && !sucesso">
     <p>{{texto}}</p>
+
+    <div class="form">
+        <h1>Meu palpite:</h1>
+
+        <mat-form-field>
+            <mat-select placeholder="Suspeito" [(value)]='guess.suspeito'>
+                <mat-option *ngFor="let suspeito of suspeitos | async" [value]="suspeito.id">
+                    {{ suspeito.descricao }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Arma" [(value)]='guess.arma'>
+                <mat-option *ngFor="let arma of armas | async" [value]="arma.id">
+                    {{ arma.descricao }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Local" [(value)]='guess.local'>
+                <mat-option *ngFor="let local of locais | async" [value]="local.id">
+                    {{ local.descricao }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <h2>{{falaDaTestemunha}}</h2>
+        <button style="text-align:center" (click)="perguntar()">Perguntar!</button>
+    </div>
+</div>
+
+<div *ngIf="sucesso" class="form">
+    <div>
+        <img style="text-align:center" width="300" alt="Angular Logo" src="assets/images/forest-detective-1391657-640x480.jpg">
+    </div>
+    <h2>Parabéns por um caso bem solucionado! Que tal irmos para o próximo?</h2>
+    <button style="text-align:center" (click)="start()">Iniciar Jogo</button>
+
 </div>
