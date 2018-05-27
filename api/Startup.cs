@@ -16,9 +16,11 @@ namespace api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment CurrentEnvironment { get; set; }
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
             Configuration = configuration;
+            CurrentEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,9 +28,21 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
             services.AddMvc();
             services.AddCors();
+
+            if (CurrentEnvironment.IsDevelopment())
+            {
+                services.AddDistributedMemoryCache();
+            }
+            else
+            {
+                services.AddDistributedRedisCache(options =>
+                    {
+                        options.Configuration = "redis";
+                        // options.InstanceName = "master";
+                    });
+            }
 
             services.AddSwaggerGen(c =>
                 {
@@ -47,27 +61,16 @@ namespace api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Game API V1");
-                });
             }
 
-            
+            app.UseSwagger();
 
-            // var policy = new Microsoft.AspNet.Cors.Infrastructure.CorsPolicy();
-
-            // policy.Headers.Add("*");
-            // policy.Methods.Add("*");
-            // policy.Origins.Add("*");
-            // policy.SupportsCredentials = true;
-
-            // services.AddCors(x => x.AddPolicy("corsGlobalPolicy", policy));
-            
-             app.UseCors(builder =>
-                 builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Game API V1");
+            });
+            app.UseCors(builder =>
+                builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseMvc();
         }
     }
